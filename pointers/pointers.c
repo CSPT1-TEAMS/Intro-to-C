@@ -8,7 +8,10 @@
 */
 void swap(int* a, int* b)
 {
-
+    int holder = *a;
+    *a = *b;
+    *b = holder;
+    
 }
 
 /*
@@ -21,7 +24,12 @@ void swap(int* a, int* b)
 */
 char *find_char(char *str, int c)
 {
-
+    for (int i=0; i<=strlen(str); i++){
+        if (str[i] == c) {
+            return str+i;
+        }
+    }
+    return 0;
 }
 
 /*
@@ -34,7 +42,12 @@ char *find_char(char *str, int c)
 */
 void string_copy(char *x, char *y)
 {
-
+    while(*y != '\0'){
+        *x = *y;
+        *y++;
+        *x++;
+    }
+    *x = '\0';
 }
 
 /* 
@@ -52,8 +65,19 @@ void string_copy(char *x, char *y)
     Do not just use the `strcmp` function from the standard library.
 */
 int string_compare(char *m, char *n)
-{
-
+{   
+    while (*m != '\0'){
+        if (m > n) {
+            return 1;
+        } 
+        if (m < n) {
+            return -1;
+        }
+    }
+    if (*n != '\0') {
+        return -1;
+    }
+    return 0;
 }
 
 /*
@@ -64,9 +88,23 @@ int string_compare(char *m, char *n)
 
     Do not use the `strstr` function from the standard library.
 */
+// World - or
 char *find_string(char *haystack, char *needle)
 {
-
+    while (*haystack != '\0') {
+        if (*haystack == *needle) {
+            while (*needle != '\0') {
+                if (*haystack != *needle){
+                    return haystack;
+                }
+                *haystack++;
+                *needle++;
+            }
+        }
+        printf("%s - Not equal\n", haystack);
+        *haystack++;
+    }
+    return NULL;
 }
 
 #ifndef TESTING
