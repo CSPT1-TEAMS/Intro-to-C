@@ -91,17 +91,18 @@ int string_compare(char *m, char *n)
 // World - or
 char *find_string(char *haystack, char *needle)
 {
+    char *first = haystack;
     while (*haystack != '\0') {
-        if (*haystack == *needle) {
-            while (*needle != '\0') {
-                if (*haystack != *needle){
-                    return haystack;
-                }
-                *haystack++;
-                *needle++;
-            }
+        while (*needle == *haystack) {
+            *haystack++;
+            *needle++;
         }
-        printf("%s - Not equal\n", haystack);
+        if (*needle == '\0'){
+            return first;
+        }
+        if (*haystack == '\0'){
+            return NULL;
+        }
         *haystack++;
     }
     return NULL;
