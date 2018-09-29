@@ -14,6 +14,10 @@
 char *string_dup(char *src)
 {
 
+
+    int len = string_length(src);
+    char *dup_string = (char *)malloc(len * sizeof(char));
+    return strcpy(dup_string, src);
 }
 
 /*
@@ -26,7 +30,15 @@ char *string_dup(char *src)
 */
 void *mem_copy(void *dest, const void *src, int n)
 {
+    n = n/sizeof(int) - 1;
+    int *source = src;
+    int *destination = dest;
 
+    for(int i = 0; i <= n; i++)
+    {
+        destination[i] = source[i];
+    }
+    return destination;
 }
 
 /*
@@ -43,10 +55,17 @@ void *mem_copy(void *dest, const void *src, int n)
 */
 void *resize_memory(void *ptr, int old_size, int new_size)
 {
+    char *new_mem = (char *)malloc(new_size * sizeof(char));
+    char *pointer = ptr;
 
+    for (int i = 0; i <= old_size; i++)
+    {
+        new_mem[i] = pointer[i];
+    }
+    return new_mem;
 }
 
-#ifndef TESTING
+// #ifndef TESTING
 int main(void)
 {
     char *s = "Some string to duplicate.";
@@ -87,4 +106,4 @@ int main(void)
 
     return 0;
 }
-#endif
+// #endif
