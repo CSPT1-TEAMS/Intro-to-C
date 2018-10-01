@@ -7,10 +7,36 @@
     by both 3 and 5, print "FizzBuzz". Increment the counter variable
     every time that nothing gets printed and return the counter.
     Don't forget to include newlines '\n' in your printf statements!
+
+    javascript:
+        for (var i=1; i <= n; i++){
+        if (i % 15 == 0) console.log("FizzBuzz");
+        else if (i % 3 == 0) console.log("Fizz");
+        else if (i % 5 == 0) console.log("Buzz");
+        else console.log(i);
+}
+
 */
 int fizzbuzz(int n)
-{
-
+{   int counter = 0; 
+    for( int i = 1; i <=n; i++) {
+        if (i % 15 == 0)
+        {
+            printf("FizzBuzz\n");
+        }
+        else if (i % 3 == 0)
+        {
+            printf("Fizz\n");
+        }
+        else if (i % 5 == 0)
+        {
+            printf("Buzz\n");
+        }
+        else {
+            counter ++;
+        }
+    }
+    return counter;
 }
 
 #ifndef TESTING

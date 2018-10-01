@@ -13,7 +13,15 @@
 */
 char *string_dup(char *src)
 {
-
+    char *dup = malloc(string_length(src));
+    char *point = dup;
+    while (*src != '\0') {
+        *dup = *src;
+        src++;
+        dup++;
+    }
+    *dup = '\0';
+    return point;
 }
 
 /*
@@ -43,7 +51,12 @@ void *mem_copy(void *dest, const void *src, int n)
 */
 void *resize_memory(void *ptr, int old_size, int new_size)
 {
-
+    char *pointer = (char *)ptr;
+    char *old = (char *)old_size;
+    for (int i = 0; i < new_size; i++) {
+        *(pointer + i) = *(old + i);
+    }
+    return ptr;
 }
 
 #ifndef TESTING
