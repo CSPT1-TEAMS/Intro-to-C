@@ -1,0 +1,56 @@
+#+TITLE: Pointer Notes
+#+AUTHOR: Andrew Jarrett
+
+Date: <2018-10-28 Sun>
+
+* Memory Allocation
+
+** =malloc=
+
+- Takes a parameter that indicates how much memory the user wants
+- Finds a /contiguous/ spot in memory that satisfies the size criteria
+
+#+BEGIN_SRC c
+  // create a pointer to a block of memory that
+  // is big enough to hold 100 integers
+  int *100_ints = malloc(100 * sizeof(int));
+
+  // then we can fill the empty block of memory:
+  for(int i = 0; i < 100; i++) {
+    ,*(100_ints + 1) = rand();
+  }
+#+END_SRC
+
+** Passing Points as Parameters
+
+We're used to passing parameters by value, where:
+
+- parameter is a copy of value of a specific variable
+- must return new value to retain changes outside scope of the function
+  
+This is good in a lot of scenarios, but what if for example the value is very large (takes up a lot of memory)?
+
+In C we can pass pointers to functions.
+
+This is called *passing by reference*
+
+- parameter is a pointer
+- cheaper if we are working with really large arrays/strings/objects (objects == structs?)
+- *mutated thing retains those updates outside the scope of the function*
+  
+#+BEGIN_SRC c
+  // example - print out a long string
+  void print_long_str(int *str, int len) {
+    for(int i = 0; i < len; i++) {
+      printf("%c", *(str + 1));
+    }
+  }
+#+END_SRC
+
+*Note:* In the example above, shouldn't the function's first parameter be =char *str=?
+  
+In summation:
+
+1. We can use /pointer arithmetic/ to iterate through all the values within a block of memory, starting with the first address
+2. /Passing pointers to functions/ allows us to manipulate large pieces of data more efficiently while maintaining updates after a function exits
+   
