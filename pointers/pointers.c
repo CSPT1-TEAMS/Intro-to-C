@@ -21,7 +21,7 @@ void swap(int* a, int* b) {
     Do not use the `strchr` function from the standard library.
 */
 char *find_char(char *str, int c) {
-  char *result;
+  char *result = NULL;
   while(*str != '\0') {
     if(*str == c) {
       result = &(*str);
@@ -65,7 +65,14 @@ void string_copy(char *x, char *y) {
     Do not just use the `strcmp` function from the standard library.
 */
 int string_compare(char *m, char *n) {
-
+  while(*m == *n) {
+    if(*m == '\0') {
+      return 0;
+    }
+    m++;
+    n++;
+  }
+  return *m - *n;
 }
 
 /*
@@ -76,9 +83,8 @@ int string_compare(char *m, char *n) {
 
     Do not use the `strstr` function from the standard library.
 */
-char *find_string(char *haystack, char *needle)
-{
-
+char *find_string(char *haystack, char *needle) {
+  
 }
 
 #ifndef TESTING
