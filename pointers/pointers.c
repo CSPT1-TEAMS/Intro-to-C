@@ -20,17 +20,25 @@ void swap(int* a, int* b) {
 
     Do not use the `strchr` function from the standard library.
 */
+
+// Old solution to find_char:
+/* char *result = NULL; */
+/* while(*str != '\0') { */
+/*   if(*str == c) { */
+/*     result = &(*str); */
+/*     break; */
+/*   } */
+/*   str++; */
+/* } */
+/* return result; */
 char *find_char(char *str, int c) {
-  char *result = NULL;
-  while(*str != '\0') {
-    if(*str == c) {
-      result = &(*str);
-      break;
+  for (int i = 0; i < strlen(str); i++) {
+    if(str[i] == c) {
+      // we return a *pointer*, not str[i]
+      return str + i;
     }
-    str++;
   }
-  return result;
-  /* return result || NULL; */
+  return NULL;
 }
 
 /*
@@ -38,9 +46,9 @@ char *find_char(char *str, int c) {
     copies the character contents of y over to x. Again, pointer arithmetic
     is necessary here. Also, make sure x points to a null character at its 
     end to terminate it properly. 
-    
     Do not just use the `strcpy` function from the standard library.
 */
+
 void string_copy(char *x, char *y) {
   while(*y != '\0') {
     *x = *y;
@@ -64,6 +72,7 @@ void string_copy(char *x, char *y) {
     
     Do not just use the `strcmp` function from the standard library.
 */
+
 int string_compare(char *m, char *n) {
   while(*m == *n) {
     if(*m == '\0') {
@@ -84,7 +93,24 @@ int string_compare(char *m, char *n) {
     Do not use the `strstr` function from the standard library.
 */
 char *find_string(char *haystack, char *needle) {
-  
+  for(int i = 0; i < strlen(haystack); i++) {
+    if(haystack[i] == needle[0]) {
+      char *start = haystack + i;
+      int n = 1;
+      i++;
+
+      while(haystack[i] == needle[n]) {
+	i++;
+	n++;
+	if(needle[n] == '\0') {
+	  return start;
+	}
+      }
+
+    }
+
+  }
+  return NULL;
 }
 
 #ifndef TESTING
