@@ -35,9 +35,9 @@ Person *createPerson(char *name, int age, int height, int weight) {
     Given a pointer to a Person struct, frees up the memory that holds the
     Person's name as well as the memory that holds the Person instance.
 */
-void destroyPerson(Person *who)
-{
-
+void destroyPerson(Person *who) {
+    free(who->name);
+    free(who);
 }
 
 #ifndef TESTING
