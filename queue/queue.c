@@ -13,9 +13,11 @@ typedef struct Queue {
     instance of the Queue struct, and initializes all of the fields of the
     struct. Also allocates memory for the queue's storage structure. 
 */
-Queue *createQueue(unsigned capacity)
-{
-
+Queue *createQueue(unsigned capacity) {
+    Queue *queue = malloc(sizeof(Queue));
+    queue->length = 0;
+    queue->capacity = capacity;
+    return queue;
 }
 
 /*
@@ -23,9 +25,14 @@ Queue *createQueue(unsigned capacity)
     not have room, expand the queue's available storage so that it 
     does have room for the additional item.
 */
-void enqueue(Queue *q, int item)
-{
-
+void enqueue(Queue *q, int item) {
+    if(q->length == q->capacity) {
+        printf("Queue at capacity!");
+    }
+    else {
+        q->storage[q->length] = item;
+        q->length++;
+    }
 }
 
 /*
