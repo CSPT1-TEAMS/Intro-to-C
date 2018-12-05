@@ -11,9 +11,9 @@
     
     Do not use the `strdup` function from the standard library.
 */
-char *string_dup(char *src)
-{
-
+char *string_dup(char *src) {
+    int len = string_length(src);
+    return memcpy(malloc(len * sizeof(char)), src, len);
 }
 
 /*
