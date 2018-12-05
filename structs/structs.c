@@ -22,9 +22,13 @@ typedef struct Person {
     When setting the `name` field, use your previously-built string_dup
     function, which handles the allocation of memory for the new string.
 */
-Person *createPerson(char *name, int age, int height, int weight)
-{
-
+Person *createPerson(char *name, int age, int height, int weight) {
+    Person *person = malloc(sizeof(Person));
+    person->name = string_dup(name);
+    person->age = age;
+    person->height = height;
+    person->weight = weight;
+    return person;
 }
 
 /*
