@@ -39,18 +39,24 @@ void enqueue(Queue *q, int item) {
     Removes the item at the front of the queue. If the queue is empty,
     this function should return -1.
 */
-int dequeue(Queue *q)
-{
-
+int dequeue(Queue *q) {
+    if(q->length == 0) {
+        printf("Empty queue!");
+        return -1;
+    }
+    else {
+        q->length--;
+        return q->storage[0];
+    }
 }
 
 /*
     Frees the memory used to hold the queue instance and its
     associated storage. 
 */
-void destroyQueue(Queue *q)
-{
-
+void destroyQueue(Queue *q) {
+    free(q->storage);
+    free(q);
 }
 
 
