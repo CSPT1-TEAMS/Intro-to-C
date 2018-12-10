@@ -15,9 +15,35 @@
     
     Do not just use the `qsort` function from the standard library.
 */
-void quicksort(int *arr, int low, int high)
-{
 
+
+int partition(int *arr, int lo, int hi) {
+    int pivot = arr[hi];
+    int pivotLoc = lo;
+
+    for(int i = lo; i < hi; i++) {
+        if(arr[i] <= pivot) {
+            // swap takes 2, not 3 arguments :facepalm:
+            // also need to deref the values
+            swap(&arr[i], &arr[pivotLoc]);
+            pivotLoc++;
+
+            // swap(arr, pivotLoc, i);
+            // pivotLoc++;
+        }
+    }
+
+    // swap pivot and hi value
+    swap(&arr[pivotLoc], &arr[hi]);
+    return pivotLoc;
+}
+
+void quicksort(int *arr, int lo, int hi) {
+    if(lo < hi) {
+        int idx = partition(arr, lo, hi);
+        quicksort(arr, lo, idx-1);
+        quicksort(arr, idx+1, hi);
+    }
 }
 
 #ifndef TESTING
